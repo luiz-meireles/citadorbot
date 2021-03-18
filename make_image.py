@@ -1,9 +1,9 @@
 from PIL import Image, ImageDraw, ImageFont, ImageColor
 import textwrap
 
-FONT = "Roboto-Regular.ttf"
+FONT = "seguiemj.ttf"
 
-FONT_SIZE = 109
+FONT_SIZE =  109
 BACKGROUND_COLOR = (0, 0, 0)
 COLOR = (255, 255, 255)
 WRAP_WIDTH = 30
@@ -57,7 +57,7 @@ def text_image(
     text_wrapped = "\n".join(textwrap.wrap(text, width, replace_whitespace=False))
 
     font = ImageFont.truetype(font, font_size, layout_engine=ImageFont.LAYOUT_RAQM)
-    text_size = font.getsize_multiline(text_wrapped, spacing=10)
+    text_size = font.getsize_multiline(text_wrapped, spacing=30)
 
     total_text_width = text_size[0] + 2 * padding
     total_text_height = text_size[1] + 2 * padding
@@ -65,7 +65,7 @@ def text_image(
     img = Image.new("RGB", (total_text_width, total_text_height), background_color)
     draw = ImageDraw.Draw(img)
     draw.multiline_text(
-        (padding, padding), text_wrapped, fill=font_color, font=font, spacing=10
+        (padding, padding), text_wrapped, fill=font_color, font=font, spacing=30, embedded_color=True
     )
 
     return img
